@@ -1,18 +1,20 @@
 import java.util.Scanner;
-import java.util.Stack;
-public class PalindromeCheckerApp {
-        public static void main(String[] args) {
+import java.util.Deque;
+import java.util.LinkedList;
+public class PalindromeCheckerApp{
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter a string: ");
         String word = sc.nextLine();
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new LinkedList<>();
         for (int i = 0; i < word.length(); i++) {
-            stack.push(word.charAt(i));
+            deque.addLast(word.charAt(i));
         }
         boolean isPalindrome = true;
-        for (int i = 0; i < word.length(); i++) {
-            char poppedChar = stack.pop();
-            if (word.charAt(i) != poppedChar) {
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
